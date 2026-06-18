@@ -1,26 +1,170 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --black: #111111;
+  --black-card: #1a1a1a;
+  --black-border: #1a1a1a;
+  --white: #f0f0f0;
+  --accent-yellow: #ff9d00;
+  --accent-cyan: #00FFFF;
+  --accent-orange: #ff9d00;
+  --border-thick: 2px solid #f0f0f0;
+  --border-card: 2px solid #2a2a2a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-black: var(--black);
+  --color-card: var(--black-card);
+  --color-accent: var(--accent-yellow);
+  --color-cyan: var(--accent-cyan);
+  --color-orange: var(--accent-orange);
+  --font-space: var(--font-space-grotesk);
+  --font-inter: var(--font-inter);
+  --font-bungee: var(--font-bungee);
+  --font-mono: monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html { scroll-behavior: smooth; }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0f0f0f;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 0% 50%, rgba(80, 40, 0, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 100% 50%, rgba(0, 60, 80, 0.35) 0%, transparent 60%);
+  background-attachment: fixed;
+  color: var(--white);
+  font-family: var(--font-inter), sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.portfolio-section {
+  width: 100%;
+  padding: 120px 0;
+}
+
+@media (max-width: 640px) {
+  .portfolio-section { padding: 80px 0; }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid #1a1a1a;
+  margin: 0;
+}
+
+/* Brutalist card — 3D shadow effect */
+.brut-card {
+  background-color: #1c1c1c;
+  border: 2px solid #000000;
+  border-radius: 4px;
+  box-shadow: 6px 6px 0px #000000;
+  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.brut-card:hover {
+  border-color: #ff9d00;
+  box-shadow: 8px 8px 0px #000000;
+  transform: translateY(-3px) translateX(-1px);
+}
+
+/* Accent tag / label sticker */
+.brut-tag {
+  display: inline-block;
+  background-color: var(--accent-yellow);
+  color: #000;
+  font-family: var(--font-press-start), monospace;
+  font-size: 0.55rem;
+  font-weight: 400;  /* Press Start 2P has only weight 400 */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.brut-tag-cyan {
+  background-color: var(--accent-cyan);
+  color: #000;
+}
+
+/* Section label */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-family: var(--font-press-start), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-yellow);
+}
+
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--accent-yellow);
+}
+
+/* Floating sticker animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(-3deg); }
+  50% { transform: translateY(-6px) rotate(-3deg); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(2deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+.sticker-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.sticker-float-reverse {
+  animation: float-reverse 3.5s ease-in-out infinite;
+}
+
+/* Section heading — Space Grotesk, uppercase, bold */
+.section-heading {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 40px;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
