@@ -1,44 +1,79 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="flex min-h-screen items-center"
-      style={{ paddingTop: "88px", paddingBottom: "48px", background: "transparent" }}
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        paddingTop: "80px",
+        paddingBottom: "40px",
+        background: "transparent",
+      }}
     >
       <div className="container" style={{ width: "100%" }}>
 
-        {/* Outer wrapper with floating stickers */}
-        <div style={{ position: "relative", width: "100%" }}>
+        {/* Ticker bar ABOVE the browser frame */}
+        <div style={{
+          backgroundColor: "#ff9d00",
+          overflow: "hidden",
+          padding: "10px 0",
+          marginBottom: "24px",
+        }}>
+          <div style={{
+            display: "inline-flex",
+            whiteSpace: "nowrap",
+            animation: "ticker 22s linear infinite",
+          }}>
+            {[1, 2].map(i => (
+              <span key={i} style={{
+                fontFamily: "var(--font-space-grotesk)",
+                fontSize: "0.8rem",
+                fontWeight: 700,
+                color: "#000000",
+                letterSpacing: "0.08em",
+              }}>
+                &nbsp;&nbsp;★ SOFTWARE ENGINEER &nbsp;&nbsp;★ MBA STUDENT &nbsp;&nbsp;★ BASED IN BENGALURU &nbsp;&nbsp;★ OPEN TO OPPORTUNITIES &nbsp;&nbsp;★ BUILDING THINGS &nbsp;&nbsp;★ HSBC ALUMNI &nbsp;&nbsp;
+              </span>
+            ))}
+          </div>
+        </div>
 
-          {/* ENGINEER sticker — top left, floating */}
+        {/* Outer wrapper — position relative for stickers */}
+        <div style={{ position: "relative" }}>
+
+          {/* ENGINEER sticker — outside frame, top-left, floating */}
           <span
             className="brut-tag sticker-float"
             style={{
               position: "absolute",
-              top: "-20px",
-              left: "-4px",
-              zIndex: 10,
-              fontSize: "0.65rem",
-              padding: "8px 14px",
+              top: "-14px",
+              left: "20px",
+              zIndex: 20,
+              fontSize: "0.55rem",
+              padding: "6px 12px",
+              fontFamily: "var(--font-press-start)",
             }}
           >
             ENGINEER
           </span>
 
-          {/* MBA sticker — bottom right, floating */}
+          {/* MBA sticker — outside frame, bottom-right, floating */}
           <span
             className="brut-tag brut-tag-cyan sticker-float-reverse"
             style={{
               position: "absolute",
-              bottom: "-20px",
-              right: "-4px",
-              zIndex: 10,
-              fontSize: "0.65rem",
-              padding: "8px 14px",
+              bottom: "-14px",
+              right: "20px",
+              zIndex: 20,
+              fontSize: "0.55rem",
+              padding: "6px 12px",
+              fontFamily: "var(--font-press-start)",
             }}
           >
             MBA
@@ -46,254 +81,230 @@ export default function Hero() {
 
           {/* BROWSER FRAME */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             style={{
               border: "2px solid #2a2a2a",
               borderRadius: "0px",
-              boxShadow: "10px 10px 0px #000000",
+              boxShadow: "8px 8px 0px #000000",
               overflow: "hidden",
               backgroundColor: "#1a1a1a",
-              width: "100%",
             }}
           >
-
             {/* Browser top bar */}
-            <div
-              style={{
-                height: "48px",
-                backgroundColor: "#141414",
-                borderBottom: "2px solid #2a2a2a",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "0 20px",
-              }}
-            >
-              {/* URL on left */}
-              <span
-                style={{
-                  fontFamily: "monospace",
-                  fontSize: "0.85rem",
-                  color: "#666666",
-                }}
-              >
-                mayankmamgain.dev {/* TODO: replace with your domain */}
+            <div style={{
+              height: "44px",
+              backgroundColor: "#141414",
+              borderBottom: "2px solid #2a2a2a",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0 20px",
+            }}>
+              <span style={{
+                fontFamily: "monospace",
+                fontSize: "0.875rem",
+                color: "#666666",
+              }}>
+                mayankmamgain.dev {/* TODO: replace */}
               </span>
-
-              {/* Window buttons on right */}
               <div style={{ display: "flex", gap: "8px" }}>
-                <button
-                  style={{
-                    width: "20px", height: "20px",
-                    borderRadius: "3px",
-                    backgroundColor: "#ff5f56",
-                    border: "none",
-                    cursor: "default",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "12px", color: "#000", fontWeight: "bold",
-                  }}
-                >×</button>
-                <button
-                  style={{
-                    width: "20px", height: "20px",
-                    borderRadius: "3px",
-                    backgroundColor: "#ffbd2e",
-                    border: "none",
-                    cursor: "default",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "12px", color: "#000", fontWeight: "bold",
-                  }}
-                >−</button>
-                <button
-                  style={{
-                    width: "20px", height: "20px",
-                    borderRadius: "3px",
-                    backgroundColor: "#27c93f",
-                    border: "none",
-                    cursor: "default",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "12px", color: "#000", fontWeight: "bold",
-                  }}
-                >+</button>
+                {[
+                  { color: "#ff5f56", label: "×" },
+                  { color: "#ffbd2e", label: "−" },
+                  { color: "#27c93f", label: "+" },
+                ].map(btn => (
+                  <div key={btn.label} style={{
+                    width: "16px",
+                    height: "16px",
+                    borderRadius: "50%",
+                    backgroundColor: btn.color,
+                  }} />
+                ))}
               </div>
             </div>
 
-            {/* Browser content */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 280px",
-                gap: "0",
-                alignItems: "stretch",
-              }}
-            >
-              {/* LEFT COLUMN */}
-              <div
-                style={{
-                  padding: "40px 48px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
-              >
-                {/* Tag row */}
-                <div style={{ display: "flex", gap: "10px", marginBottom: "28px", flexWrap: "wrap" }}>
-                  <span className="brut-tag" style={{ fontSize: "0.6rem", padding: "8px 14px" }}>
+            {/* Content grid */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "1fr auto",
+            }}>
+
+              {/* LEFT — content */}
+              <div style={{
+                padding: "48px 48px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}>
+
+                {/* Tags */}
+                <div style={{ display: "flex", gap: "10px", marginBottom: "24px", flexWrap: "wrap" }}>
+                  <span className="brut-tag" style={{ fontSize: "0.55rem", padding: "6px 12px", fontFamily: "var(--font-press-start)" }}>
                     SOFTWARE ENGINEER
                   </span>
-                  <span className="brut-tag brut-tag-cyan" style={{ fontSize: "0.6rem", padding: "8px 14px" }}>
+                  <span className="brut-tag brut-tag-cyan" style={{ fontSize: "0.55rem", padding: "6px 12px", fontFamily: "var(--font-press-start)" }}>
                     MBA STUDENT
                   </span>
                 </div>
 
-                {/* Heading — Press Start 2P pixel font */}
-                <div style={{ marginBottom: "20px" }}>
-                  <h1
-                    style={{
-                      fontFamily: "var(--font-press-start)",
-                      fontSize: "clamp(1.6rem, 3vw, 2.8rem)",
-                      fontWeight: "400",
-                      lineHeight: "1.4",
-                      color: "#ffffff",
-                      textTransform: "uppercase",
-                      marginBottom: "8px",
-                    }}
-                  >
+                {/* Heading */}
+                <div style={{ marginBottom: "16px" }}>
+                  <h1 style={{
+                    fontFamily: "var(--font-bungee)",
+                    fontSize: "clamp(2.8rem, 4.5vw, 4.2rem)",
+                    fontWeight: "400",
+                    lineHeight: "1.05",
+                    color: "#ffffff",
+                    textTransform: "uppercase",
+                    margin: "0 0 4px 0",
+                  }}>
                     HEY, I&apos;M
                   </h1>
-                  <h1
-                    style={{
-                      fontFamily: "var(--font-press-start)",
-                      fontSize: "clamp(1.6rem, 3vw, 2.8rem)",
-                      fontWeight: "400",
-                      lineHeight: "1.4",
-                      color: "#ff9d00",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    MAYANK MAMGAIN. {/* TODO: replace with real name */}
+                  <h1 style={{
+                    fontFamily: "var(--font-bungee)",
+                    fontSize: "clamp(2.8rem, 4.5vw, 4.2rem)",
+                    fontWeight: "400",
+                    lineHeight: "1.05",
+                    color: "#ff9d00",
+                    textTransform: "uppercase",
+                    margin: "0",
+                  }}>
+                    MAYANK MAMGAIN. {/* TODO: replace */}
                   </h1>
                 </div>
 
-                {/* Orange HR */}
-                <div
-                  style={{
-                    width: "80px",
-                    height: "4px",
-                    backgroundColor: "#ff9d00",
-                    marginBottom: "28px",
-                  }}
-                />
+                {/* Orange line */}
+                <div style={{
+                  width: "64px",
+                  height: "3px",
+                  backgroundColor: "#ff9d00",
+                  marginBottom: "24px",
+                }} />
 
                 {/* Bio */}
-                <p
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: "1.0625rem",
-                    color: "#aaaaaa",
-                    lineHeight: "1.75",
-                    maxWidth: "520px",
-                    marginBottom: "36px",
-                  }}
-                >
+                <p style={{
+                  fontFamily: "var(--font-inter)",
+                  fontSize: "1rem",
+                  color: "#aaaaaa",
+                  lineHeight: "1.75",
+                  maxWidth: "500px",
+                  marginBottom: "32px",
+                }}>
                   I used to write production code for a bank, and now I&apos;m learning why the bank exists. The useful part is living in both worlds: shipping reliable software and asking better questions about the business problems behind it.
-                  {/* TODO: replace with real bio */}
+                  {/* TODO: replace bio */}
                 </p>
 
-                {/* CONTACT ME button */}
-                <div>
-                  <a
-                    href="#contact"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      backgroundColor: "#ff9d00",
-                      color: "#000000",
-                      fontFamily: "var(--font-space-grotesk)",
-                      fontSize: "0.9rem",
-                      fontWeight: "800",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.08em",
-                      padding: "16px 32px",
-                      border: "2px solid #ff9d00",
-                      borderRadius: "3px",
-                      textDecoration: "none",
-                      transition: "all 0.15s ease",
-                    }}
-                    onMouseEnter={e => {
-                      const el = e.currentTarget;
-                      el.style.backgroundColor = "transparent";
-                      el.style.color = "#ff9d00";
-                    }}
-                    onMouseLeave={e => {
-                      const el = e.currentTarget;
-                      el.style.backgroundColor = "#ff9d00";
-                      el.style.color = "#000000";
-                    }}
-                  >
-                    CONTACT ME
-                  </a>
-                </div>
+                {/* CTA Button */}
+                <a
+                  href="#contact"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    alignSelf: "flex-start",
+                    backgroundColor: "#ff9d00",
+                    color: "#000000",
+                    fontFamily: "var(--font-bungee)",
+                    fontSize: "1rem",
+                    fontWeight: "400",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                    padding: "14px 28px",
+                    border: "2px solid #ff9d00",
+                    borderRadius: "3px",
+                    textDecoration: "none",
+                    transition: "all 0.15s ease",
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.backgroundColor = "transparent";
+                    e.currentTarget.style.color = "#ff9d00";
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.backgroundColor = "#ff9d00";
+                    e.currentTarget.style.color = "#000000";
+                  }}
+                >
+                  CONTACT ME
+                </a>
               </div>
 
-              {/* RIGHT COLUMN — orange photo panel */}
-              <div
-                style={{
-                  backgroundColor: "#ff9d00",
-                  padding: "24px",
-                  paddingBottom: "80px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "start",
-                  position: "relative",
-                  maxHeight: "480px",
-                }}
-              >
+              {/* RIGHT — orange photo panel, self-contained, does not stretch */}
+              <div style={{
+                backgroundColor: "#ff9d00",
+                padding: "12px",
+                paddingBottom: "12px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
+                alignSelf: "center",
+                margin: "auto 24px auto 0",
+                width: "220px",
+                flexShrink: 0,
+              }}>
                 {/* Photo box */}
-                <div
-                  style={{
-                    width: "100%",
-                    height: "280px",
-                    backgroundColor: "#1a1a1a",
-                    border: "3px solid #000000",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#555555",
-                    fontSize: "0.875rem",
-                    fontFamily: "var(--font-inter)",
-                  }}
-                >
-                  Your Photo {/* TODO: replace with <Image /> */}
+                <div style={{
+                  width: "100%",
+                  height: "240px",
+                  backgroundColor: "#1c1c1c",
+                  border: "3px solid #000000",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#555555",
+                  fontSize: "0.875rem",
+                  fontFamily: "var(--font-inter)",
+                }}>
+                  <Image
+                    src="/photo.jpeg"
+                    alt="Mayank Mamgain"
+                    width={220}
+                    height={280}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      display: "block",
+                    }}
+                    priority
+                  />
                 </div>
 
-                {/* Social buttons at bottom of orange panel */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "20px",
-                    left: "24px",
-                    right: "24px",
-                    display: "flex",
-                    gap: "10px",
-                    justifyContent: "center",
-                  }}
-                >
+                {/* Social buttons row */}
+                <div style={{
+                  display: "flex",
+                  gap: "8px",
+                  justifyContent: "center",
+                  width: "100%",
+                }}>
                   <a
                     href="https://github.com/Mayank17M" /* TODO: add GitHub URL */
                     aria-label="GitHub"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
-                      width: "48px", height: "48px",
-                      backgroundColor: "#000000",
+                      width: "52px",
+                      height: "52px",
+                      backgroundColor: "#00FFFF",
                       border: "2px solid #000000",
-                      borderRadius: "4px",
+                      borderRadius: "0px",
+                      boxShadow: "3px 3px 0px #000000",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: "#ff9d00",
+                      color: "#000000",
                       transition: "all 0.15s ease",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.backgroundColor = "#000000";
+                      e.currentTarget.style.color = "#00FFFF";
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.backgroundColor = "#00FFFF";
+                      e.currentTarget.style.color = "#000000";
                     }}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -303,16 +314,29 @@ export default function Hero() {
                   <a
                     href="https://www.linkedin.com/in/mayank-mamgain-652a091ba/" /* TODO: add LinkedIn URL */
                     aria-label="LinkedIn"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
-                      width: "48px", height: "48px",
-                      backgroundColor: "#000000",
+                      width: "52px",
+                      height: "52px",
+                      backgroundColor: "#00FFFF",
                       border: "2px solid #000000",
-                      borderRadius: "4px",
+                      borderRadius: "0px",
+                      boxShadow: "3px 3px 0px #000000",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: "#ff9d00",
+                      color: "#000000",
                       transition: "all 0.15s ease",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.backgroundColor = "#000000";
+                      e.currentTarget.style.color = "#00FFFF";
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.backgroundColor = "#00FFFF";
+                      e.currentTarget.style.color = "#000000";
                     }}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -324,40 +348,6 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
-
-        {/* TICKER BAR below browser frame */}
-        <div
-          style={{
-            marginTop: "32px",
-            backgroundColor: "#ff9d00",
-            overflow: "hidden",
-            padding: "12px 0",
-            width: "100%",
-          }}
-        >
-          <div
-            style={{
-              display: "inline-flex",
-              whiteSpace: "nowrap",
-              animation: "ticker 22s linear infinite",
-            }}
-          >
-            {[1, 2].map(i => (
-              <span
-                key={i}
-                style={{
-                  fontFamily: "var(--font-press-start)",
-                  fontSize: "0.55rem",
-                  color: "#000000",
-                  letterSpacing: "0.12em",
-                }}
-              >
-                &nbsp;&nbsp;★ SOFTWARE ENGINEER &nbsp;&nbsp;★ MBA STUDENT &nbsp;&nbsp;★ BASED IN BENGALURU &nbsp;&nbsp;★ OPEN TO OPPORTUNITIES &nbsp;&nbsp;★ BUILDING THINGS &nbsp;&nbsp;★ HSBC ALUMNI &nbsp;&nbsp;
-              </span>
-            ))}
-          </div>
-        </div>
-
       </div>
     </section>
   );

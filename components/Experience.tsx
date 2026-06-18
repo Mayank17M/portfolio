@@ -20,10 +20,10 @@ const experiences = [
     role: "Software Engineer",
     company: "HSBC, Pune",
     bullets: [
-      "Built [system name] that processed [X] transactions handling ₹[Y] in daily volume", // TODO
-      "Reduced [metric] by [X]% through [approach]", // TODO
-      "Led [initiative] across [X] teams resulting in [outcome]", // TODO
-      "Developed [feature] used by [X] customers", // TODO
+      "Designed and built scalable applications for international payment gateways handling high-volume cross-border transactions", // TODO
+      "Built and maintained CI/CD and automation pipelines, reducing manual deployment effort and improving release reliability", // TODO
+      "Collaborated with cross-functional teams across engineering, product, and compliance to deliver end-to-end features", // TODO
+      "Optimised performance and troubleshot critical production issues, ensuring stability for payment infrastructure used globally", // TODO
     ],
     tech: ["Python", "Jenkins", "Bash", "Splunk", "AWS", "Git"],
   },
@@ -83,11 +83,14 @@ export default function Experience() {
         >
           {/* Heading inside orange panel */}
           <h2
-            className="section-heading"
             style={{
+              fontFamily: "var(--font-bungee)",
+              fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
+              fontWeight: "400",
               color: "#000000",
               marginBottom: "48px",
-              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              letterSpacing: "0.04em",
+              maxWidth: "45%",
             }}
           >
             EXPERIENCE JOURNEY

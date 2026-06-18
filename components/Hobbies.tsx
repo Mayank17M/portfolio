@@ -11,7 +11,9 @@ export default function Hobbies() {
   return (
     <section id="hobbies" className="portfolio-section">
       <div className="container">
-        <p className="section-label">hobbies</p>
+        <h2 style={{ fontFamily: "var(--font-bungee)", fontSize: "clamp(2rem, 3.5vw, 3rem)", fontWeight: "400", color: "#ff9d00", textTransform: "uppercase", marginBottom: "32px" }}>
+          HOBBIES
+        </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {hobbies.map(({ Icon, name, caption }) => (
             <article
@@ -34,7 +36,7 @@ export default function Hobbies() {
               />
               <h3
                 style={{
-                  fontFamily: "var(--font-space-grotesk), sans-serif",
+                  fontFamily: "var(--font-bungee)",
                   fontSize: "1.25rem",
                   fontWeight: 800,
                   color: "#ffffff",

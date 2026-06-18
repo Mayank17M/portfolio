@@ -6,12 +6,40 @@ import { useEffect, useState } from "react";
 const NAV_LINKS = [
   { label: "About", href: "#about", id: "about" },
   { label: "Experience", href: "#experience", id: "experience" },
-  { label: "Skills", href: "#skills", id: "skills" },
   { label: "Education", href: "#education", id: "education" },
   { label: "Currently", href: "#currently", id: "currently" },
   { label: "Hobbies", href: "#hobbies", id: "hobbies" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
+
+const BASE_LINK_STYLE: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "8px 16px",
+  borderWidth: "2px",
+  borderStyle: "solid",
+  borderColor: "#2a2a2a",
+  borderRadius: "4px",
+  background: "#1a1a1a",
+  color: "#888888",
+  fontFamily: "var(--font-bungee)",
+  fontSize: "0.75rem",
+  fontWeight: 400,
+  textTransform: "uppercase",
+  letterSpacing: "0.05em",
+  boxShadow: "3px 3px 0px #000000",
+  transition: "all 0.15s ease",
+  cursor: "pointer",
+  textDecoration: "none",
+  whiteSpace: "nowrap",
+};
+
+const ACTIVE_LINK_STYLE: React.CSSProperties = {
+  ...BASE_LINK_STYLE,
+  background: "#ff9d00",
+  color: "#000000",
+  borderColor: "#ff9d00",
+};
 
 export default function Navbar() {
   const [active, setActive] = useState("");
@@ -32,14 +60,23 @@ export default function Navbar() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const linkCls = (id: string) =>
-    [
-      "font-[family-name:var(--font-space-grotesk)] font-bold text-[0.75rem] uppercase tracking-[0.1em]",
-      "px-[18px] py-[10px] rounded-[3px] border transition-colors duration-150 whitespace-nowrap",
-      active === id
-        ? "bg-[#ff9d00] text-black border-[#ff9d00]"
-        : "bg-[#1a1a1a] text-[#888] border-[#2a2a2a] hover:border-[#444] hover:text-[#f0f0f0]",
-    ].join(" ");
+  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (active === id) return;
+    const el = e.currentTarget;
+    el.style.borderColor = "#444444";
+    el.style.color = "#f0f0f0";
+    el.style.boxShadow = "4px 4px 0px #000000";
+    el.style.transform = "translateY(-1px)";
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (active === id) return;
+    const el = e.currentTarget;
+    el.style.borderColor = "#2a2a2a";
+    el.style.color = "#888888";
+    el.style.boxShadow = "3px 3px 0px #000000";
+    el.style.transform = "";
+  };
 
   return (
     <>
@@ -69,9 +106,15 @@ export default function Navbar() {
           </div>
 
           {/* Centre — nav links */}
-          <div className="hidden md:flex items-center justify-center gap-[8px]">
+          <div className="hidden md:flex items-center justify-center" style={{ gap: "8px" }}>
             {NAV_LINKS.map(({ label, href, id }) => (
-              <a key={id} href={href} className={linkCls(id)}>
+              <a
+                key={id}
+                href={href}
+                style={active === id ? ACTIVE_LINK_STYLE : BASE_LINK_STYLE}
+                onMouseEnter={(e) => handleMouseEnter(e, id)}
+                onMouseLeave={(e) => handleMouseLeave(e, id)}
+              >
                 {label}
               </a>
             ))}
@@ -126,7 +169,12 @@ export default function Navbar() {
           style={{ top: 72, background: "rgba(15,15,15,0.98)" }}
         >
           {NAV_LINKS.map(({ label, href, id }) => (
-            <a key={id} href={href} onClick={() => setOpen(false)} className={linkCls(id)}>
+            <a
+              key={id}
+              href={href}
+              onClick={() => setOpen(false)}
+              style={active === id ? ACTIVE_LINK_STYLE : BASE_LINK_STYLE}
+            >
               {label}
             </a>
           ))}

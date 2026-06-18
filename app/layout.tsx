@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bungee, Inter, Press_Start_2P, Space_Grotesk } from "next/font/google";
+import { Bungee, Inter, Press_Start_2P, Russo_One, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -24,6 +24,12 @@ const bungee = Bungee({
   variable: "--font-bungee",
 });
 
+const russoOne = Russo_One({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-russo",
+});
+
 export const metadata: Metadata = {
   title: "Your Name | Portfolio",
   description: "Single-page portfolio for a software engineer and MBA student.",
@@ -41,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${pressStart.variable} ${bungee.variable}`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${pressStart.variable} ${bungee.variable} ${russoOne.variable}`}
     >
       <body>{children}</body>
     </html>

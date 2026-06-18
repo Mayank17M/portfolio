@@ -18,6 +18,7 @@ const config: Config = {
         "press-start": ["var(--font-press-start)", "monospace"],
         space: ["var(--font-space-grotesk)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
+        russo: ["var(--font-russo)", "sans-serif"],
       },
     },
   },

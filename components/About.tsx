@@ -6,7 +6,9 @@ export default function About() {
   return (
     <section id="about" className="portfolio-section">
       <div className="container">
-        <p className="section-label">about</p>
+        <h2 style={{ fontFamily: "var(--font-bungee)", fontSize: "clamp(2rem, 3.5vw, 3rem)", fontWeight: "400", color: "#ff9d00", textTransform: "uppercase", marginBottom: "32px" }}>
+          ABOUT
+        </h2>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

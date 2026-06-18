@@ -16,7 +16,9 @@ export default function Education() {
   return (
     <section id="education" className="portfolio-section">
       <div className="container">
-        <p className="section-label">education</p>
+        <h2 style={{ fontFamily: "var(--font-bungee)", fontSize: "clamp(2rem, 3.5vw, 3rem)", fontWeight: "400", color: "#ff9d00", textTransform: "uppercase", marginBottom: "32px" }}>
+          EDUCATION
+        </h2>
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -32,7 +34,7 @@ export default function Education() {
           >
             <h3
               style={{
-                fontFamily: "var(--font-space-grotesk), sans-serif",
+                fontFamily: "var(--font-bungee)",
                 fontSize: "1.25rem",
                 fontWeight: 800,
                 textTransform: "uppercase",
@@ -62,7 +64,7 @@ export default function Education() {
           >
             <h3
               style={{
-                fontFamily: "var(--font-space-grotesk), sans-serif",
+                fontFamily: "var(--font-bungee)",
                 fontSize: "1.25rem",
                 fontWeight: 800,
                 textTransform: "uppercase",
@@ -92,7 +94,7 @@ export default function Education() {
           >
             <h3
               style={{
-                fontFamily: "var(--font-space-grotesk), sans-serif",
+                fontFamily: "var(--font-bungee)",
                 fontSize: "1.25rem",
                 fontWeight: 800,
                 textTransform: "uppercase",
@@ -100,13 +102,13 @@ export default function Education() {
                 marginBottom: 12,
               }}
             >
-              [Class XII / High School] {/* TODO: replace */}
+              Sr. Secondary / Secondary {/* TODO: replace */}
             </h3>
             <p style={{ fontSize: "1rem", color: "#CAFF00", marginBottom: 8 }}>
-              [School Name] {/* TODO: replace */}
+              The Baptist Convent School {/* TODO: replace */}
             </p>
             <p style={{ fontSize: "0.875rem", color: "#555555", marginBottom: 20 }}>
-              [2014] – [2016] {/* TODO: replace */}
+              2014 – 2018 {/* TODO: replace */}
             </p>
             <div style={{ borderTop: "2px solid #000", marginBottom: 20 }} />
             <p style={{ fontSize: "0.9rem", color: "#888888", fontStyle: "italic", lineHeight: 1.7 }}>

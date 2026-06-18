@@ -1,16 +1,18 @@
 const rows = [
   { icon: "📍", label: "Based in", value: "Delhi, India" },
-  { icon: "📖", label: "Reading", value: "[Book name]" }, // TODO replace
-  { icon: "📺", label: "Watching", value: "[Show name]" }, // TODO replace
+  { icon: "📖", label: "Reading", value: "The room — I read the room pretty well" }, // TODO replace
+  { icon: "📺", label: "Watching", value: "The Office — it's basically a case study" }, // TODO replace
   { icon: "🛠️", label: "Building", value: "This portfolio (meta, I know)" },
-  { icon: "🧠", label: "Learning", value: "[Skill or course]" }, // TODO replace
+  { icon: "🧠", label: "Learning", value: "That money doesn't grow on git branches" }, // TODO replace
 ];
 
 export default function Currently() {
   return (
     <section id="currently" className="portfolio-section">
       <div className="container">
-        <p className="section-label">currently</p>
+        <h2 style={{ fontFamily: "var(--font-bungee)", fontSize: "clamp(2rem, 3.5vw, 3rem)", fontWeight: "400", color: "#ff9d00", textTransform: "uppercase", marginBottom: "32px" }}>
+          CURRENTLY
+        </h2>
         <div className="brut-card relative" style={{ padding: "48px 52px" }}>
           {rows.map((row, i) => (
             <div

@@ -1,7 +1,6 @@
 const footerLinks = [
   { label: "ABOUT", href: "#about" },
   { label: "EXPERIENCE", href: "#experience" },
-  { label: "SKILLS", href: "#skills" },
   { label: "EDUCATION", href: "#education" },
   { label: "CURRENTLY", href: "#currently" },
   { label: "HOBBIES", href: "#hobbies" },
